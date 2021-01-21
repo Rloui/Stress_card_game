@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- linked up jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <!-- linked up css -->
+    <link rel="stylesheet" href="main.css">
+    <title>StressCardGame</title>
+</head>
+<body> 
+    <div class="container">
+        <header>
+            <h1>Stress Card Game</h1>
+            <h3>Swap cards by clicking on a cards once followed by the card you want to swap</h3>
+            <p>Ranks switch but suits are Trippy</p>
+        </header>
+        <nav class="flex-nav">
+            <a href="directions.html">Directions</a>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+        </nav>
+        <main class="main-container">
+    <!-- Draw Piles -->
+            <div id="drawPiles">
+                <div class="card" id="0">
+                    <div class="value0"></div>
+                    <div class="suit-flexContainer">
+                        <div class="suit0"></div>
+                    </div>
+                </div>
+
+                <div class="card" id="1">
+                    <div class="value1"></div>
+                    <div class="suit-flexContainer">
+                        <div class="suit1"></div>
+                    </div>
+                </div>
+
+                <div class="card" id="2">
+                    <div class="value2"></div>
+                    <div class="suit-flexContainer">
+                        <div class="suit2"></div>
+                    </div>
+                </div>
+
+                <div class="card" id="3">
+                    <div class="value3"></div>
+                    <div class="suit-flexContainer">
+                        <div class="suit3"></div>
+                    </div>
+                </div>
+            </div>
+        
+            <div id="handPiles">
+                <!-- pile index zero-->
+                <div class="pile" id="0">
+                    <div class="card" id="0">
+                        <div class="pileValue0"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit0"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="1">
+                        <div class="pileValue1"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit1"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="2">
+                        <div class="pileValue2"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit2"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="3">
+                        <div class="pileValue3"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit3"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- pile index one-->
+                <div class="pile" id="1">
+                    <div class="card" id="0">
+                        <div class="pileValue4"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit4"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="1">
+                        <div class="pileValue5"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit5"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="2">
+                        <div class="pileValue6"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit6"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="3">
+                        <div class="pileValue7"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit7"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- pile index two-->
+                <div class="pile" id="2">
+                    <div class="card" id="0">
+                        <div class="pileValue8"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit8"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="1">
+                        <div class="pileValue9"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit9"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="2">
+                        <div class="pileValue10"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit10"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="3">
+                        <div class="pileValue11"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit11"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- pile index three-->
+                <div class="pile" id="3">
+                    <div class="card" id="0">
+                        <div class="pileValue12"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit12"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="1">
+                        <div class="pileValue13"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit13"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="2">
+                        <div class="pileValue14"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit14"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="3">
+                        <div class="pileValue15"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit15"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- pile index four-->
+                <div class="pile" id="4">
+                    <div class="card" id="0">
+                        <div class="pileValue16"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit16"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="1">
+                        <div class="pileValue17"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit17"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="2">
+                        <div class="pileValue18"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit18"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="3">
+                        <div class="pileValue19"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit19"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- pile index five-->
+                <div class="pile" id="5">
+                    <div class="card" id="0">
+                        <div class="pileValue20"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit20"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="1">
+                        <div class="pileValue21"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit21"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="2">
+                        <div class="pileValue22"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit22"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="3">
+                        <div class="pileValue23"></div>
+                        <div class="suit-flexContainer">
+                            <div class="pileSuit23"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <h2>Match The Ranks!</h2>
+        </footer>
+    </div>
+    <!-- linked up js -->
+    <script src="app.js" charset="utf-8"></script>
+</body> 
+</html>
+---------------------------------------------------
+https://rloui.github.io/stressgame/
