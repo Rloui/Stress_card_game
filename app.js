@@ -75,14 +75,6 @@ $(() => {
 	// Function re sizes deck baised on playing mode //
 	///////////////////////////////////////////////////
 	const deckSizer = () => {
-		// returns resized deck array ofr player mode
-		// let playersMode = prompt(
-			// 'what mode do you want to play in Mult-player or Single player? Type Single or Mult below' // mult mode
-		// )
-		// resizes deck for multi player mode elss if single player mode
-		// if (playersMode === 'Mult' || playersMode === 'mult') {// mult mode
-			// return deck// mult mode
-		// } else if (playersMode === 'Single' || playersMode === 'single') {// mult mode
 			for (let i = 0; i < deck.length; i++) {
 				if (i === 7 || i === 14 || i === 21 || i === 28) {
 					for (let j = 0; j < 6; j++) {
@@ -91,10 +83,9 @@ $(() => {
 				}
 			}
 			return deck
-		// }// mult mode
 	}
 
-	// holeds the deck with the proper playing size
+	// holds the deck with the proper playing size
 	let playingDeck = deckSizer()
 
 	////////////////////////////
@@ -109,7 +100,7 @@ $(() => {
 			let hold = playingDeck[firstCard]
 			// swaps card from the first position to the second position
 			playingDeck[firstCard] = playingDeck[secondCard]
-			//swaps card from the secons position the the first position
+			//swaps card from the second position the the first position
 			playingDeck[secondCard] = hold
 		}
 		return playingDeck
@@ -120,9 +111,9 @@ $(() => {
 	// Function Deals Players Hand //
 	/////////////////////////////////
 	const dealPlayerCards = (player) => {
-		// I think this only works for one player, player 2 would have the same hand(not good)
-		// if multiplayer with 52 cards each player gets 6 piles of 4 and 4 cards do in the middle in th middle
+		// if multiplayer with 52 cards each player gets 6 piles of 4 and 4 cards in the middle in th middle
 		// if single player with 28 cards, the player gets 6 piles and 4 cards go into the middle
+		// console.log(playingDeck)
 		for (let i = 0; i < playingDeck.length - 4; i++) {
 			if (i < 4) {
 				player.hand[0].push(playingDeck[i])
@@ -140,8 +131,7 @@ $(() => {
 		}
 	}
 	dealPlayerCards(playerOne)
-	// console.log(playerOne)
-
+	
 	// /////////////////////////////////////
 	// // Function Deals the Middle Cards //
 	// /////////////////////////////////////
@@ -155,108 +145,74 @@ $(() => {
 		}
 	}
 	dealMiddleCards()
-	// console.log(middleCards)
 
 	///////////////////////////////////////////////////////
 	/// Function Renders Cards //
 	///////////////////////////////////////////////////////
 	const renderCards = () => {
 		let count = 0
-		// console.log(`before: ${middleCards[0].suit}`)
-		// console.log(`before: ${playerOne.hand[0][0].suit}`)// something is going on with the classes and how when I add a class 2 classe end up on the same div and the latter class take control of the image presented which isnt the right class THIS WAS FIXXED
 
 		for (let i = 0; i < middleCards.length; i++) {
 			
 			$('#drawPiles').find('.value' + i).text(middleCards[i].rank)
 			$('#drawPiles').find('.suit' + i).addClass('suit' + middleCards[i].suit)// problem with the suit of the player hand rendering
-			// console.log(middleCards[i])
 		}
-		// console.log(middleCards[0].suit)
+		
 		for (let i = 0; i < 6; i++) {
 			for (let j = 0; j < 4; j++) {
-				$('.pile').find('.pileValue' + count).text(playerOne.hand[i][j].rank)
-				$('.pile').find('.pileSuit' + count).addClass('suit' + playerOne.hand[i][j].suit)// problem with the suit of the player hand rendering
-				count++
+				$('.pile' + i).find('.pileValue' + j).text(playerOne.hand[i][j].rank)
+				$('.pile' + i).find('.pileSuit' + j).addClass('suit' + playerOne.hand[i][j].suit)
 			}
 		}
-		// console.log(playerOne.hand[0][0].suit) 
-		// i: 0 - 6
-		// j: 0 - 4
 	}
 	renderCards()
 	
 	//////////////////////////////////////////////////////
 	// Function Swaps User card choice with middle card //
 	//////////////////////////////////////////////////////
-
 	const swap = (middleIndex, cardIndex, pile) => {        
 		let playerCardSwap = playerOne.hand[pile][cardIndex]  
 		let middleCardSwap = middleCards[middleIndex]
-
-		// console.log(middleIndex, cardIndex, pile)
-
-
-		
-		// console.log('suit' + middleCards[middleIndex].suit)
 
 		////////////////////////////
 		///// Removing the class fixes the double class issue that messed up the render
 		///////////////////////////
 		$('.suit' + middleIndex).removeClass('suit' + middleCards[middleIndex].suit)
-		$('.pileSuit' + pile).removeClass('suit' + playerOne.hand[pile][cardIndex].suit) // pile doesn't work => card index is not supposed to be in the beginning of this, the way the counter renders cards going from 0 to 23 in conjunction with the classes that have that throws everything off <<<==== because of the counting convention NEW PROBLEM
-
-
+		$('.pileSuit' + cardIndex).removeClass('suit' + playerOne.hand[pile][cardIndex].suit)
 
 		//// With Splice ////
 		playerOne.hand[pile].splice(cardIndex, 1, middleCardSwap)
 		middleCards.splice(middleIndex, 1, playerCardSwap)
 
-		
-		
-		// $('.suit' + middleIndex).removeClass('suit' + middleCards[middleIndex].suit)
-
-		// $('.pileSuit' + pile).removeClass('suit' + playerOne.hand[pile][cardIndex].suit)
-		
-		//// With splice and Push ////
-		// middleCards.splice(middleIndex, 1)
-		// middleCards.push(playerCardSwap)
-
-		// playerOne.hand[pile].splice(cardIndex, 1)
-		// playerOne.hand[pile].push(middleCardSwap)
-
 		renderCards()
 	}
 
 	let click = false
-
 	let selectedMiddleCard = ''
 	let selectedPile = 0
 	let selectedCard = 0
 	
 	$('.card').on('click', (e) => {
-
 		if (!click) { // makes the event handeler know if a card has been selected or not
 			if ($(e.currentTarget).parent().attr('id') === 'drawPiles') {
 				selectedMiddleCard = $(e.currentTarget).attr('id') // the value of card in middle array
-				// console.log('middle card was clicked')
-			} else if ($(e.currentTarget).parent().attr('class') === 'pile') {
+			} else if ($(e.currentTarget).parent().hasClass('pile')) {
 				selectedCard = $(e.currentTarget).attr('id')
 				selectedPile = $(e.currentTarget).parent().attr('id')
-				// console.log('regular card was clicked')
 			}
 			return click = true
 		}
 
-		if ($(e.currentTarget).parent().attr('class') === 'pile') {
+		if ($(e.currentTarget).parent().hasClass('pile')) {
 			selectedCard = $(e.currentTarget).attr('id')
 			selectedPile = $(e.currentTarget).parent().attr('id')
 			// console.log('regular card was clicked')
 		} else if ($(e.currentTarget).parent().attr('id') === 'drawPiles') {
 			selectedMiddleCard = $(e.currentTarget).attr('id') // the value of card in middle array
-			// console.log('middle card was clicked')
 		}
 		
 		swap(selectedMiddleCard, selectedCard, selectedPile)
+		console.log(selectedMiddleCard, selectedPile, selectedCard)
 
 		e.stopPropagation() // stops event bubbling
 		return click = false
