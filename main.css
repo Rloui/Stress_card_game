@@ -67,7 +67,7 @@ nav a {
 .pile {
 	height: 180px;
 	width: 560px;
-	/* border: 2px solid blue; */
+	/* border: 2px solid blue;; */
 	margin: 0 auto;
 	overflow: auto;
 	display: flex;
